@@ -49,16 +49,14 @@ func main() {
 
 	var am int
 
-	var headers [][]string
-
 	os.Args = os.Args[1:]
 	for i := 0; i < len(os.Args); i++ {
 		var arg string = os.Args[i]
 		switch arg {
-			case "-h", "--header":
-				for _,hs := range strings.Split(os.Args[i+1], ":") {
-					headers = append(headers,strings.Split(hs, "="))
-				}
+
+			case "-h", "--help":
+				fmt.Println("./rangemap -dr github.com:50-80 this will scan ports between 50 and 80\n\n./rangemap -r 127.0.0.1-10:80 this will scan 80 port on ips between 127.0.0.1 and 127.0.0.10\n\n-dr does not allows you to use range on address or domain -r allows you tou use range on just ip, you can't event type domain")
+				os.Exit(0)
 			case "-dr", "--drange":
 				if am != 0 {
 					fmt.Println("domain/ip range already set!")
